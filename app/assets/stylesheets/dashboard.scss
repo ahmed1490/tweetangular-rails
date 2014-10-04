@@ -71,9 +71,66 @@ body {
   }
 }
 
-.container:before, .container:after{
-  display: table;
-  content: " ";
+
+.container{
+  // padding-top: 100px;
+
+  &:before, &:after{
+    display: table;
+    content: " ";
+  }
+}
+
+.ui.main.menu {
+  .item:before {
+    width: 0;
+  }
+  .item {
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .title.item{
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-left: 100px;
+    font-size: 23px;
+    background: rgba(0, 0, 0, 0.01);
+  }
+
+  .item.search-field{
+    height: 43px;
+    padding: 0;
+    min-width: 52%;
+
+    input {
+      height: 61px;
+      border-color: rgba(0, 0, 0, 0.04);
+      border-radius: 0;
+      border-top: none;
+      border-bottom: none;
+      font-size: 18px;
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 2em;
+      color: #287DD9;
+    }
+
+    input:focus{
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    i {
+      padding: 30px 10px;
+    }
+  }
+
+  .item.signout{
+    height: 61px;
+    display: inline-block;
+    line-height: 31px;
+    opacity: 0.5;
+
+    &:hover{
+      opacity: 1;
+    }
+  }
 }
 
 .product-name{
@@ -128,3 +185,4 @@ a {
 .pointer{
   cursor: pointer;
 }
+

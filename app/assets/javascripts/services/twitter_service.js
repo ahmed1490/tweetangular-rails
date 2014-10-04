@@ -112,6 +112,7 @@
       // }
     }
 
+    exports.tweetCache = [];
     return exports;
 
   }]);

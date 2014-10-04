@@ -1,0 +1,16 @@
+.ui.transparent.main.menu ng-controller="MenuController" ng-show="config.isAuthenticated"
+  .container
+    a.title.item href='/'
+      | TweetAngular
+
+    .item
+
+    .item.search-field
+      .ui.search.icon.input
+        input placeholder="What do you want to know..." type="text" ng-model="config.searchTerm" on-enter="searchTwitter()"
+          i.search.link.icon
+
+
+    .right.menu
+      a.ui.item.signout ng-click="signOut()"
+        | Signout

@@ -2,24 +2,18 @@
   'use strict';
 
     angular.module('twitterApp.controllers')
-     .controller('TwitterController', ['$scope', '$q' ,'twitterService', function($scope, $q, twitterService) {
+     .controller('TwitterController', ['$scope', '$q' ,'twitterService', 'dataCacheService',
+      function($scope, $q, twitterService, dataCacheService) {
 
-        $scope.tweets;
-        $scope.isAuthenticated = false;
+        $scope.cache = dataCacheService.cache;
+        $scope.config = dataCacheService.userConfig;
         twitterService.initialize();
 
         //using the OAuth authorization result get the latest 20 tweets from twitter for the user
         $scope.refreshTimeline = function() {
-            $scope.tweetsType = 'timeline';
+            $scope.config.tweetsType = 'timeline';
             twitterService.getLatestTweets().then(function(data) {
-                $scope.tweets = data;
-            });
-        }
-
-        $scope.searchTwitter = function() {
-            $scope.tweetsType = 'search';
-            twitterService.getRelatedTweets($scope.searchTerm).then(function(data) {
-                $scope.tweets = data;
+                $scope.cache.tweets = data;
             });
         }
 
@@ -27,7 +21,7 @@
         $scope.connectButton = function() {
             twitterService.connectTwitter().then(function() {
                 if (twitterService.isReady()) {
-                    $scope.isAuthenticated = true;
+                    $scope.config.isAuthenticated = true;
                     $scope.refreshTimeline();
                 }
             });
@@ -50,19 +44,9 @@
         //     });
         // }
 
-        //sign out clears the OAuth cache, the user will have to reauthenticate when returning
-        $scope.signOut = function() {
-            twitterService.clearCache();
-            $scope.tweets.length = 0;
-            $scope.isAuthenticated = false;
-            // $('#getTimelineButton, #signOut').fadeOut(function(){
-            //     $('#connectButton').fadeIn();
-            // });
-        }
-
         //if the user is a returning user, hide the sign in button and display the tweets
         if (twitterService.isReady()) {
-            $scope.isAuthenticated = true;
+            $scope.config.isAuthenticated = true;
             $scope.refreshTimeline();
         }
 
