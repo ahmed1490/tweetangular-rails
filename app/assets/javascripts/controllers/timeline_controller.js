@@ -10,13 +10,14 @@
 
         //using the OAuth authorization result get the latest 20 tweets from twitter for the user
         $scope.refreshTimeline = function() {
+            $scope.tweetsType = 'timeline';
             twitterService.getLatestTweets().then(function(data) {
                 $scope.tweets = data;
             });
         }
 
         $scope.searchTwitter = function() {
-            console.log('searchTerm', $scope.searchTerm);
+            $scope.tweetsType = 'search';
             twitterService.getRelatedTweets($scope.searchTerm).then(function(data) {
                 $scope.tweets = data;
             });
@@ -27,10 +28,7 @@
             twitterService.connectTwitter().then(function() {
                 if (twitterService.isReady()) {
                     $scope.isAuthenticated = true;
-                    // $('#connectButton').fadeOut(function(){
-                        // $('#getTimelineButton, #signOut').fadeIn();
-                        $scope.refreshTimeline();
-                    // });
+                    $scope.refreshTimeline();
                 }
             });
         }
@@ -65,8 +63,6 @@
         //if the user is a returning user, hide the sign in button and display the tweets
         if (twitterService.isReady()) {
             $scope.isAuthenticated = true;
-            // $('#connectButton').hide();
-            // $('#getTimelineButton, #signOut').show();
             $scope.refreshTimeline();
         }
 

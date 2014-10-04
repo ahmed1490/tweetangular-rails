@@ -1,7 +1,9 @@
 .fullscreen ng-controller="TwitterController" ng-class="{ 'background': !isAuthenticated }"
   .fullscreen-wrapper ng-show='!isAuthenticated'
     .intro-text
-      .intro-lead-in Welcome To TweetAngular!
+      .intro-lead-in
+        |Welcome To&nbsp;
+        span.product-name TweetAngular!
       .intro-heading It's Nice To Meet You
 
       /button#connectButton.btn.btn-primary type="button"  Connect Twitter
@@ -19,23 +21,53 @@
       h1 Tweet-angular
       .row
         .col-xs-12
-          button#getTimelineButton.btn.btn-info ng-click="refreshTimeline()" type="button"
-            | Refresh My Timeline
           input ng-model="searchTerm" on-enter="searchTwitter()" placeholder=("Search Here") type="text" /
           button#signOut.btn.btn-link ng-click="signOut()" style="float:right;" type="button"  Sign Out
 
-      .row.ng-cloak
-        #results.col-xs-12
-          .row ng-repeat=("t in tweets")
-            .col-xs-2.col-sm-1
-              img.img-circle ng-src="{{t.user.profile_image_url}}"
-            .col-xs-10.col-sm-11
-              small
-                | {{t.user.name}}
-              br
-                | {{t.text}}
-                br/
-                a href="" ng-click="" ng-show="t.retweeted"
-                  | Retweeted
-                  a href="" ng-click="retweet(t)" ng-hide="t.retweeted"
-                    | Retweet
+    .ui.three.column.grid
+      .one.column
+
+      .two.column
+        .ui.raised.blue.segment
+          .ui.right.aligned.popup
+            i.heart.refresh.icon.link data-content="Refresh your timeline." ng-click="refreshTimeline()" ng-show="tweetsType == 'timeline'"
+
+          h5.ui.header
+            i.icon.inverted.circular.blue.comment.heading
+            span.heading-text ng-show="tweetsType == 'timeline'"
+              | Your Timeline
+            span.heading-text ng-show="tweetsType == 'search'"
+              | Search Results for&nbsp;
+              i.bold.text
+                | {{ searchTerm }}
+          .ui.comments
+            .comment ng-repeat=("t in tweets")
+              a.avatar
+                img src="{{t.user.profile_image_url}}"
+              .content
+                a.author ng-href="{{t.user.url}}" target='_blank'
+                  | {{t.user.name}}
+                / .metadata
+                /   span.date 2 days ago
+                .text
+                  | {{t.text}}
+                .actions
+                  a href="" ng-click="" ng-show="t.retweeted"  Retweeted
+                  a href="" ng-click="retweet(t)" ng-hide="t.retweeted"  Retweet
+
+
+      / .row.ng-cloak
+      /   #results.col-xs-12
+      /     .row ng-repeat=("t in tweets")
+      /       .col-xs-2.col-sm-1
+      /         img.img-circle ng-src="{{t.user.profile_image_url}}"
+      /       .col-xs-10.col-sm-11
+      /         small
+      /           | {{t.user.name}}
+      /         br
+      /           | {{t.text}}
+      /           br/
+      /           a href="" ng-click="" ng-show="t.retweeted"
+      /             | Retweeted
+      /             a href="" ng-click="retweet(t)" ng-hide="t.retweeted"
+      /               | Retweet

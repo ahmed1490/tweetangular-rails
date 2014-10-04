@@ -5,6 +5,10 @@
   margin: 0;
 }
 
+html, body {
+  height:100%;
+}
+
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 14px;
@@ -13,24 +17,18 @@ body {
   background-color: #fff;
 }
 
-::selection {
+.background ::selection {
   text-shadow: none;
   background: #fed136;
 }
 
-/* fullscreen setup */
-html, body {
-    /* give this to all tags from html to .fullscreen */
-    height:100%;
-}
-
 /* background setup */
 .background {
-    background-size: 105% 180%;
+    background-size: 105% 141%;
     background-repeat:no-repeat;
-    background-position:50% 50%;
+    // background-position:50% 50%;
     /* ie8- graceful degradation */
-    background-position:50% 50%9 !important;
+    // background-position:50% 50%9 !important;
     // opacity: 0.7;
     background-image: url('/assets/background1.jpg');
     width: 100%;
@@ -67,6 +65,9 @@ html, body {
       line-height: 75px;
     }
 
+    .button{
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
   }
 }
 
@@ -75,10 +76,9 @@ html, body {
   content: " ";
 }
 
-// .ui.yellow.button{
-//   background-color: #fed136;
-//   color: #4092CC;
-// }
+.product-name{
+  border-bottom: 4px solid #fed136;
+}
 
 .ui.twitter.button{
   font-size: 1.8em;
@@ -86,4 +86,41 @@ html, body {
   .content {
     font-size: 0.7em;
   }
+}
+
+a {
+  color: #009FDA;
+  text-decoration: none;
+}
+
+.comment.heading{
+  float: left;
+  margin-bottom: 28px;
+
+  & ~ .heading-text{
+    line-height: 1.9em;
+    margin-left: 10px;
+  }
+}
+.ui.comments{
+  clear: both;
+}
+
+.ui.segment {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.ui.comments .comment > .avatar ~ .content {
+  border-top: 1px solid #F5F3F3;
+  padding-bottom: 5px;
+  padding-top: 12px;
+}
+
+.ui.comments .comment .avatar img{
+  margin-top: 9px;
+}
+
+.ui.right.aligned {
+  float: right;
 }
