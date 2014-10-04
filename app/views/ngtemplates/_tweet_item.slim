@@ -1,0 +1,13 @@
+script type="text/ng-template" id="tweetItem.html"
+  .comment ng-repeat=("t in cache.tweets")
+    a.avatar
+      img src="{{t.user.profile_image_url}}"
+    .content
+      a.author ng-href="{{t.user.url}}" target='_blank'
+        | {{t.user.name}}
+      / .metadata
+      /   span.date 2 days ago
+      .text linkify="twitter" ng-bind-html="highlight(t.text, config.searchTerm)"
+      .actions
+        a href="" ng-click="" ng-show="t.retweeted"  Retweeted
+        a href="" ng-click="retweet(t)" ng-hide="t.retweeted"  Retweet
