@@ -13,7 +13,8 @@
         .col-xs-2.col-sm-1
           img.img-circle ng-src="{{t.user.profile_image_url}}"
         .col-xs-10.col-sm-11
-          small  {t.user.name}
+          small
+            | {{t.user.name}}
           br
             | {{t.text}}
             br/
