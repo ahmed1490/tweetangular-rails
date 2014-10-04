@@ -49,8 +49,7 @@
                   | {{t.user.name}}
                 / .metadata
                 /   span.date 2 days ago
-                .text linkify="twitter"
-                  | {{t.text}}
+                .text linkify="twitter" ng-bind-html="highlight(t.text, config.searchTerm)"
                 .actions
                   a href="" ng-click="" ng-show="t.retweeted"  Retweeted
                   a href="" ng-click="retweet(t)" ng-hide="t.retweeted"  Retweet

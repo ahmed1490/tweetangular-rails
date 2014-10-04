@@ -186,3 +186,11 @@ a {
   cursor: pointer;
 }
 
+.highlightedText{
+  border-bottom: 1px dashed #ccc;
+  cursor: text;
+  &:hover {
+    background: #eee;
+    border-bottom: 1px solid #aaa;
+  }
+}

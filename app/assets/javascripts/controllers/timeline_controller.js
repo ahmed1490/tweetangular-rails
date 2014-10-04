@@ -2,8 +2,8 @@
   'use strict';
 
     angular.module('twitterApp.controllers')
-     .controller('TwitterController', ['$scope', '$q' ,'twitterService', 'dataCacheService',
-      function($scope, $q, twitterService, dataCacheService) {
+     .controller('TwitterController', ['$scope', '$q' ,'twitterService', 'dataCacheService', '$sce',
+      function($scope, $q, twitterService, dataCacheService, $sce) {
 
         $scope.cache = dataCacheService.cache;
         $scope.config = dataCacheService.userConfig;
@@ -43,6 +43,13 @@
         //         tweet.retweeted = data.retweeted;
         //     });
         // }
+
+        $scope.highlight = function(text, search) {
+          if (!search) {
+              return $sce.trustAsHtml(text);
+          }
+          return $sce.trustAsHtml(text.replace(new RegExp(search, 'gi'), '<span class="highlightedText">$&</span>'));
+        };
 
         //if the user is a returning user, hide the sign in button and display the tweets
         if (twitterService.isReady()) {
