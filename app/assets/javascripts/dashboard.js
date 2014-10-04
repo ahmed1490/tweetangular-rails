@@ -1,0 +1,3 @@
+$(function(){
+  $('.timeline-refresh').popup();
+})

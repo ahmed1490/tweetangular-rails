@@ -113,14 +113,18 @@ a {
 
 .ui.comments .comment > .avatar ~ .content {
   border-top: 1px solid #F5F3F3;
-  padding-bottom: 5px;
-  padding-top: 12px;
+  padding-bottom: 0;
+  padding-top: 17px;
 }
 
 .ui.comments .comment .avatar img{
   margin-top: 9px;
 }
 
-.ui.right.aligned {
+.right.aligned {
   float: right;
+}
+
+.pointer{
+  cursor: pointer;
 }

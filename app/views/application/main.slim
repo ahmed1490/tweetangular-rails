@@ -29,8 +29,8 @@
 
       .two.column
         .ui.raised.blue.segment
-          .ui.right.aligned.popup
-            i.heart.refresh.icon.link data-content="Refresh your timeline." ng-click="refreshTimeline()" ng-show="tweetsType == 'timeline'"
+          .right.aligned.timeline-refresh.pointer data-content="Refresh your timeline."
+            i.refresh.icon ng-click="refreshTimeline()"
 
           h5.ui.header
             i.icon.inverted.circular.blue.comment.heading
