@@ -1,0 +1,23 @@
+.container ng-controller="TwitterController"
+  h1 Tweet-angular
+  .row
+    .col-xs-12
+      button#connectButton.btn.btn-primary ng-click="connectButton()" type="button"  Connect Twitter
+      button#getTimelineButton.btn.btn-info ng-click="refreshTimeline()" style="display:none;" type="button"  Get My Timeline
+      input ng-model="searchTerm" on-enter="searchTwitter()" placeholder=("Search Here") type="text" /
+      button#signOut.btn.btn-link ng-click="signOut()" style="display:none;float:right;" type="button"  Sign Out
+
+  .row.ng-cloak
+    #results.col-xs-12
+      .row ng-repeat=("t in tweets")
+        .col-xs-2.col-sm-1
+          img.img-circle ng-src="{{t.user.profile_image_url}}"
+        .col-xs-10.col-sm-11
+          small  {t.user.name}
+          br
+            | {{t.text}}
+            br/
+            a href="" ng-click="" ng-show="t.retweeted"
+              | Retweeted
+              a href="" ng-click="retweet(t)" ng-hide="t.retweeted"
+                | Retweet
