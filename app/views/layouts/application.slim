@@ -7,6 +7,8 @@ html
     title
       = content_for?(:title) ? yield(:title) : 'Tweet-angular'
     / link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'
+    link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css"
+    link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"
     link rel="shortcut icon" href="#{asset_path('tweetangular.ico')}"
 
     / link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
@@ -18,16 +20,11 @@ html
         display: none !important;
       }
 
-  body ng-app="twitterApp"
+  body ng-app="twitterApp" ng-class="{ 'center': page.isSelected(1) }"
     | <!--[if lt IE 7]><p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>to improve your experience.</p><![endif]-->
     = render 'layouts/header'
 
-    .container[style="margin-top: 15px;"]
-      - if flash
-        - flash.each do |name, msg|
-            alert[type="'success'"] #{msg}
-
-      = yield
+    = yield
 
     = render 'layouts/footer'
 

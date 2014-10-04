@@ -1,3 +1,89 @@
-body{
-  font-family: 'Helvetica Neue', 'Helvetica';
+@import "semantic-ui";
+
+*{
+  padding:0;
+  margin: 0;
+}
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+::selection {
+  text-shadow: none;
+  background: #fed136;
+}
+
+/* fullscreen setup */
+html, body {
+    /* give this to all tags from html to .fullscreen */
+    height:100%;
+}
+
+/* background setup */
+.background {
+    background-size: 105% 180%;
+    background-repeat:no-repeat;
+    background-position:50% 50%;
+    /* ie8- graceful degradation */
+    background-position:50% 50%9 !important;
+    // opacity: 0.7;
+    background-image: url('/assets/background1.jpg');
+    width: 100%;
+    min-height: 100%;
+}
+
+.fullscreen.background .fullscreen-wrapper{
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1170px;
+  text-align: center;
+  color: white;
+
+  .intro-text{
+    padding-top: 180px;
+    padding-bottom: 200px;
+
+    .intro-lead-in{
+      margin-bottom: 25px;
+      font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 40px;
+      font-style: italic;
+      line-height: 40px;
+    }
+
+    .intro-heading{
+      margin-bottom: 50px;
+      text-transform: uppercase;
+      font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 75px;
+      font-weight: 700;
+      line-height: 75px;
+    }
+
+  }
+}
+
+.container:before, .container:after{
+  display: table;
+  content: " ";
+}
+
+// .ui.yellow.button{
+//   background-color: #fed136;
+//   color: #4092CC;
+// }
+
+.ui.twitter.button{
+  font-size: 1.8em;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  .content {
+    font-size: 0.7em;
+  }
 }

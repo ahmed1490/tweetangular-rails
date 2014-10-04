@@ -5,7 +5,7 @@
      .controller('TwitterController', ['$scope', '$q' ,'twitterService', function($scope, $q, twitterService) {
 
         $scope.tweets;
-        $scope.authenticated = false;
+        $scope.isAuthenticated = false;
         twitterService.initialize();
 
         //using the OAuth authorization result get the latest 20 tweets from twitter for the user
@@ -26,11 +26,11 @@
         $scope.connectButton = function() {
             twitterService.connectTwitter().then(function() {
                 if (twitterService.isReady()) {
-                    $scope.authenticated = true;
-                    $('#connectButton').fadeOut(function(){
-                        $('#getTimelineButton, #signOut').fadeIn();
+                    $scope.isAuthenticated = true;
+                    // $('#connectButton').fadeOut(function(){
+                        // $('#getTimelineButton, #signOut').fadeIn();
                         $scope.refreshTimeline();
-                    });
+                    // });
                 }
             });
         }
@@ -56,15 +56,17 @@
         $scope.signOut = function() {
             twitterService.clearCache();
             $scope.tweets.length = 0;
-            $('#getTimelineButton, #signOut').fadeOut(function(){
-                $('#connectButton').fadeIn();
-            });
+            $scope.isAuthenticated = false;
+            // $('#getTimelineButton, #signOut').fadeOut(function(){
+            //     $('#connectButton').fadeIn();
+            // });
         }
 
         //if the user is a returning user, hide the sign in button and display the tweets
         if (twitterService.isReady()) {
-            $('#connectButton').hide();
-            $('#getTimelineButton, #signOut').show();
+            $scope.isAuthenticated = true;
+            // $('#connectButton').hide();
+            // $('#getTimelineButton, #signOut').show();
             $scope.refreshTimeline();
         }
 
