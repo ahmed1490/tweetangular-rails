@@ -48,7 +48,8 @@
       },
       getRelatedTweets: function (search_term) {
           var deferred = $q.defer();
-          var promise = authorizationResult.get('/1.1/search/tweets.json?q='+search_term).done(function(data) {
+          var query = encodeURIComponent(search_term)
+          var promise = authorizationResult.get('/1.1/search/tweets.json?q='+query).done(function(data) {
               deferred.resolve(data.statuses)
           });
           return deferred.promise;

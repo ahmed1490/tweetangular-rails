@@ -10,9 +10,17 @@
 
         $scope.searchTwitter = function() {
             $scope.config.tweetsType = 'search';
-            twitterService.getRelatedTweets($scope.config.searchTerm).then(function(data) {
-                $scope.cache.tweets = data;
-            });
+            if( $scope.config.searchTerm.length > 0 ){
+              twitterService.getRelatedTweets($scope.config.searchTerm).then(function(data) {
+                  $scope.cache.tweets = data;
+              });
+            }
+            else{
+              $scope.config.tweetsType = 'timeline';
+              twitterService.getLatestTweets().then(function(data) {
+                  $scope.cache.tweets = data;
+              });
+            }
         }
 
 
