@@ -4,7 +4,8 @@
     angular.module('twitterApp.controllers')
      .controller('TwitterController', ['$scope', '$q' ,'twitterService', function($scope, $q, twitterService) {
 
-        $scope.tweets; //array of tweets
+        $scope.tweets;
+        $scope.authenticated = false;
         twitterService.initialize();
 
         //using the OAuth authorization result get the latest 20 tweets from twitter for the user
@@ -25,7 +26,7 @@
         $scope.connectButton = function() {
             twitterService.connectTwitter().then(function() {
                 if (twitterService.isReady()) {
-                    //if the authorization is successful, hide the connect button and display the tweets
+                    $scope.authenticated = true;
                     $('#connectButton').fadeOut(function(){
                         $('#getTimelineButton, #signOut').fadeIn();
                         $scope.refreshTimeline();

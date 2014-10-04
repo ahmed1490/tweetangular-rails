@@ -4,7 +4,7 @@
   angular.module('twitterApp.services')
    .factory('twitterService',['$q', function($q) {
 
-    window.authorizationResult = false;
+    var authorizationResult = false;
 
     var exports = {
       initialize: function() {

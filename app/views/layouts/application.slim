@@ -5,12 +5,12 @@ html
       = yield(:meta)
 
     title
-      = content_for?(:title) ? yield(:title) : 'tweetangular'
-    link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'
+      = content_for?(:title) ? yield(:title) : 'Tweet-angular'
+    / link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'
     link rel="shortcut icon" href="#{asset_path('tweetangular.ico')}"
 
-    link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
-    link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"
+    / link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"
+    / link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
     css:
@@ -33,4 +33,4 @@ html
 
     script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.22/angular.min.js"
     = javascript_include_tag 'application'
-    script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
+    / script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"
