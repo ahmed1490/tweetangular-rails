@@ -9,5 +9,9 @@ script type="text/ng-template" id="tweetItem.html"
       /   span.date 2 days ago
       .text linkify="twitter" ng-bind-html="highlight(t.text, config.searchTerm)"
       .actions
-        a href="" ng-click="" ng-show="t.retweeted"  Retweeted
-        a href="" ng-click="retweet(t)" ng-hide="t.retweeted"  Retweet
+        a.red.text href="" ng-click="" ng-show="t.retweeted"
+          i.retweet.red.icon
+          | Retweeted
+        a.purple.text href="" ng-click="retweet(t)" ng-show="!t.retweeted"
+          i.retweet.purple.icon
+          | Retweet

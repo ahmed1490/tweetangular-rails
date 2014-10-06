@@ -17,12 +17,16 @@ body {
   background-color: #fff;
 }
 
+a {
+  color: #009FDA;
+  text-decoration: none;
+}
+
 .background ::selection {
   text-shadow: none;
   background: #fed136;
 }
 
-/* background setup */
 .background {
     background-size: 105% 141%;
     background-repeat:no-repeat;
@@ -69,8 +73,6 @@ body {
 
 
 .container{
-  // padding-top: 100px;
-
   &:before, &:after{
     display: table;
     content: " ";
@@ -141,10 +143,6 @@ body {
   }
 }
 
-a {
-  color: #009FDA;
-  text-decoration: none;
-}
 
 .comment.heading{
   float: left;
@@ -174,16 +172,8 @@ a {
   margin-top: 9px;
 }
 
-.right.aligned {
-  float: right;
-}
-
-.center.content{
-  text-align: center;
-}
-
-.pointer{
-  cursor: pointer;
+.ui.comments .comment .actions a{
+  color: #999;
 }
 
 .highlightedText{
@@ -235,3 +225,23 @@ a {
         transform:rotate(360deg);
     }
 }
+
+.right.aligned {
+  float: right;
+}
+
+.center.content{
+  text-align: center;
+}
+
+.pointer{
+  cursor: pointer;
+}
+// .text{
+//   &.purple{
+//     color: #564F8A;
+//   }
+//   &.red{
+//     color: #D95C5C;
+//   }
+// }

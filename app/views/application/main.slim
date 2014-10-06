@@ -21,11 +21,12 @@
 
     .ui.three.column.grid
       .one.column
+        .ui.raised.segment
 
       .one.column
         .ui.raised.blue.segment
-          .right.aligned.timeline-refresh.pointer.inverted data-content="Refresh your timeline." data-position='bottom left'
-            i.refresh.icon ng-click="refreshTimeline()" ng-class="{spinning: loadingTweets}" ng-show="config.tweetsType == 'timeline'""
+          .right.aligned.timeline-refresh.pointer.inverted data-content="Refresh your timeline." data-position='bottom left' ng-show="config.tweetsType == 'timeline'"
+            i.refresh.icon ng-click="refreshTimeline()" ng-class="{spinning: loadingTweets}"
 
           h5.ui.header
             i.icon.inverted.circular.blue.comment.heading
