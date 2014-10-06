@@ -18,11 +18,6 @@
   .container ng-show='config.isAuthenticated'
 
     .container-text
-      / h1 Tweet-angular
-      / .row
-      /   .col-xs-12
-      /     input ng-model="config.searchTerm" on-enter="searchTwitter()" placeholder=("Search Here") type="text" /
-      /     button#signOut.btn.btn-link ng-click="signOut()" style="float:right;" type="button"  Sign Out
 
     .ui.three.column.grid
       .one.column
@@ -30,7 +25,7 @@
       .one.column
         .ui.raised.blue.segment
           .right.aligned.timeline-refresh.pointer.inverted data-content="Refresh your timeline." data-position='bottom left'
-            i.refresh.icon ng-click="refreshTimeline()"
+            i.refresh.icon ng-click="refreshTimeline()" ng-class="{spinning: loadingTweets}" ng-show="config.tweetsType == 'timeline'""
 
           h5.ui.header
             i.icon.inverted.circular.blue.comment.heading
@@ -42,21 +37,13 @@
                 | {{ config.searchTerm }}
           .ui.comments
             tweet
+            br
+            br
+            br
+            .ui.bottom.attached.label.pointer.center.content ng-show="cache.tweets.length > 0" ng-click="moreTweets()" ng-class="{black: loadingMoreTweets == true}"
+              i.double.angle.down.large.icon ng-show="!loadingMoreTweets"
+              i.refresh.spinning.icon ng-show="loadingMoreTweets"
+              span ng-show='!loadingMoreTweets' More
+              span ng-show='loadingMoreTweets' Loading
 
 = render 'ngtemplates/tweet_item'
-
-      / .row.ng-cloak
-      /   #results.col-xs-12
-      /     .row ng-repeat=("t in tweets")
-      /       .col-xs-2.col-sm-1
-      /         img.img-circle ng-src="{{t.user.profile_image_url}}"
-      /       .col-xs-10.col-sm-11
-      /         small
-      /           | {{t.user.name}}
-      /         br
-      /           | {{t.text}}
-      /           br/
-      /           a href="" ng-click="" ng-show="t.retweeted"
-      /             | Retweeted
-      /             a href="" ng-click="retweet(t)" ng-hide="t.retweeted"
-      /               | Retweet

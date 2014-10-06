@@ -17,7 +17,7 @@
             }
             else{
               $scope.config.tweetsType = 'timeline';
-              twitterService.getLatestTweets().then(function(data) {
+              twitterService.getTimelineTweets().then(function(data) {
                   $scope.cache.tweets = data;
               });
             }

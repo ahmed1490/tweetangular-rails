@@ -24,32 +24,38 @@
               if (!error) {
                   authorizationResult = result;
                   deferred.resolve();
-                  // authorizationResult.me().done(function(user_data){
-                  //   exports.userProviderID = user_data.raw.id_str;
-                  // })
               } else {
-                  //do something if there's an error
+                  alert("Something went wrong while connecting to twitter. Please refresh and try again!");
               }
           });
           return deferred.promise;
       },
-      userProviderID: undefined,
+
       clearCache: function() {
           OAuth.clearCache('twitter');
           authorizationResult = false;
       },
 
-      getLatestTweets: function () {
+      getLoggedInUserInfo: function(){
+        var deferred = $q.defer();
+        authorizationResult.me().done(function(data){
+          deferred.resolve(data);
+        });
+        return deferred.promise;
+      },
+
+      getTimelineTweets: function (opts) {
+          var url = '/1.1/statuses/home_timeline.json?'+getQueryParams(opts);
           var deferred = $q.defer();
-          var promise = authorizationResult.get('/1.1/statuses/home_timeline.json').done(function(data) { //https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
-              deferred.resolve(data)
+          var promise = authorizationResult.get(url).done(function(data) {
+              deferred.resolve(data);
           });
           return deferred.promise;
       },
-      getRelatedTweets: function (search_term) {
+      getRelatedTweets: function (search_term, opts) {
+          var url = '/1.1/search/tweets.json?q='+encodeURIComponent(search_term)+'&'+getQueryParams(opts);
           var deferred = $q.defer();
-          var query = encodeURIComponent(search_term)
-          var promise = authorizationResult.get('/1.1/search/tweets.json?q='+query).done(function(data) {
+          var promise = authorizationResult.get(url).done(function(data) {
               deferred.resolve(data.statuses)
           });
           return deferred.promise;
@@ -111,6 +117,15 @@
       //   }
       //  return deferred.promise;
       // }
+    }
+
+    function getQueryParams(opts){
+      opts = opts || {};
+      if(opts.max_id)
+        return 'max_id=' + String(parseInt(opts.max_id)-1);
+      else if(opts.since_id)
+        return 'since_id=' + String(opts.since_id);
+      return '';
     }
 
     exports.tweetCache = [];
